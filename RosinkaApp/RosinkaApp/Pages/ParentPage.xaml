@@ -1,0 +1,50 @@
+﻿<Page x:Class="RosinkaApp.Pages.ParentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RosinkaApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ParentPage">
+    <ScrollViewer ScrollViewer.CanContentScroll="True"  Background="White">
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Margin="5" FontSize="20" Text="Список родителей"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20">
+                <TextBox x:Name="searchTb" TextChanged="searchTb_TextChanged" Margin="10" MinWidth="150"/>
+                <ComboBox x:Name="nameCmb" SelectionChanged="nameCmb_SelectionChanged"  Margin="10" MinWidth="150">
+                    <ComboBoxItem Content="А-Я"/>
+                    <ComboBoxItem Content="Я-А"/>
+                </ComboBox>
+                <Button x:Name="CloseBtn" Margin="10,0,20,0" Width="20" Height="20" Padding="0,0,2,5" Content="X" Click="CloseBtn_Click"></Button>
+                <Button x:Name="AddBtn" Content="Добавить" Click="AddBtn_Click"></Button>
+            </StackPanel>
+            <StackPanel>
+                <ListView x:Name="parentList" BorderThickness="0" Margin="20,30,30,20">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid>
+                            </UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border HorizontalAlignment="Center" MinWidth="250" VerticalAlignment="Center" BorderBrush="Black" BorderThickness="0.5" CornerRadius="5">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding ParentFullName}" HorizontalAlignment="Center"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Passport.Birthday,  StringFormat={}{0:d MMMM yyyy}, ConverterCulture=ru}"/>
+                                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="Дети:"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" MaxWidth="200px" Text="{Binding ParentChilds}" ></TextBlock>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Margin="5" x:Name="delBtn" Click="delBtn_Click" Content="Удалить"/>
+                                        <Button Margin="5" x:Name="EditBtn" Click="EditBtn_Click" Content="Просмотреть"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

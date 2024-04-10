@@ -1,0 +1,1001 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RosinkaDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BirthCertificate">
+          <Key>
+            <PropertyRef Name="BirthCertificateId" />
+          </Key>
+          <Property Name="BirthCertificateId" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="BirthCertificateDate" Type="date" />
+          <Property Name="IssuedBy" Type="text" />
+          <Property Name="PlaceOfBirth" Type="text" />
+        </EntityType>
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="ChildId" />
+          </Key>
+          <Property Name="ChildId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthCertificateId" Type="nvarchar" MaxLength="7" />
+          <Property Name="Status" Type="int" />
+          <Property Name="ChildPhoto" Type="varbinary(max)" />
+          <Property Name="HealthCardId" Type="int" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfIssue" Type="date" />
+        </EntityType>
+        <EntityType Name="ChildGroup">
+          <Key>
+            <PropertyRef Name="ChildGroupId" />
+          </Key>
+          <Property Name="ChildGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildId" Type="int" />
+          <Property Name="GroupId" Type="int" />
+        </EntityType>
+        <EntityType Name="ChildParent">
+          <Key>
+            <PropertyRef Name="ChildParentId" />
+          </Key>
+          <Property Name="ChildParentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChildId" Type="int" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GoupID" />
+          </Key>
+          <Property Name="GoupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GroupStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="NumberOfRoom" Type="int" />
+          <Property Name="GroupTypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="GroupMentor">
+          <Key>
+            <PropertyRef Name="GroupMentorId" />
+          </Key>
+          <Property Name="GroupMentorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="MentorId" Type="int" />
+        </EntityType>
+        <EntityType Name="GroupType">
+          <Key>
+            <PropertyRef Name="GroupTypeId" />
+          </Key>
+          <Property Name="GroupTypeId" Type="int" Nullable="false" />
+          <Property Name="GroupTypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HealthCard">
+          <Key>
+            <PropertyRef Name="HealthCardId" />
+          </Key>
+          <Property Name="HealthCardId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Disability" Type="nvarchar" MaxLength="50" />
+          <Property Name="HealthGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExtensiveTreatment" Type="nvarchar" MaxLength="50" />
+          <Property Name="VaccinationCertificateFirstPage" Type="varbinary(max)" />
+          <Property Name="Comment" Type="text" />
+        </EntityType>
+        <EntityType Name="Parent">
+          <Key>
+            <PropertyRef Name="ParentId" />
+          </Key>
+          <Property Name="ParentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassportId" Type="int" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="PassportId" />
+          </Key>
+          <Property Name="PassportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PassportSeries" Type="nvarchar" MaxLength="5" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="15" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Citizenship" Type="nvarchar" MaxLength="50" />
+          <Property Name="RegistrationAddress" Type="text" />
+          <Property Name="ActualAddress" Type="text" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfAcceptance" Type="date" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Child_BirthCertificate1">
+          <End Role="BirthCertificate" Type="Self.BirthCertificate" Multiplicity="0..1" />
+          <End Role="Child" Type="Self.Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BirthCertificate">
+              <PropertyRef Name="BirthCertificateId" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="BirthCertificateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Child_HealthCard">
+          <End Role="HealthCard" Type="Self.HealthCard" Multiplicity="0..1" />
+          <End Role="Child" Type="Self.Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthCard">
+              <PropertyRef Name="HealthCardId" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="HealthCardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Child_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Child" Type="Self.Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildGroup_Child">
+          <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
+          <End Role="ChildGroup" Type="Self.ChildGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="ChildId" />
+            </Principal>
+            <Dependent Role="ChildGroup">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildGroup_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="ChildGroup" Type="Self.ChildGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GoupID" />
+            </Principal>
+            <Dependent Role="ChildGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildParent_Child">
+          <End Role="Child" Type="Self.Child" Multiplicity="0..1" />
+          <End Role="ChildParent" Type="Self.ChildParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="ChildId" />
+            </Principal>
+            <Dependent Role="ChildParent">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildParent_Parent">
+          <End Role="Parent" Type="Self.Parent" Multiplicity="0..1" />
+          <End Role="ChildParent" Type="Self.ChildParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentId" />
+            </Principal>
+            <Dependent Role="ChildParent">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_GroupType">
+          <End Role="GroupType" Type="Self.GroupType" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupType">
+              <PropertyRef Name="GroupTypeId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="GroupTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="NumberOfRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMentor_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="GroupMentor" Type="Self.GroupMentor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GoupID" />
+            </Principal>
+            <Dependent Role="GroupMentor">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMentor_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="GroupMentor" Type="Self.GroupMentor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="GroupMentor">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parent_Passport">
+          <End Role="Passport" Type="Self.Passport" Multiplicity="0..1" />
+          <End Role="Parent" Type="Self.Parent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="PassportId" />
+            </Principal>
+            <Dependent Role="Parent">
+              <PropertyRef Name="PassportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RosinkaDbModelStoreContainer">
+          <EntitySet Name="BirthCertificate" EntityType="Self.BirthCertificate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChildGroup" EntityType="Self.ChildGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChildParent" EntityType="Self.ChildParent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupMentor" EntityType="Self.GroupMentor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupType" EntityType="Self.GroupType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HealthCard" EntityType="Self.HealthCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parent" EntityType="Self.Parent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passport" EntityType="Self.Passport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Child_BirthCertificate1" Association="Self.FK_Child_BirthCertificate1">
+            <End Role="BirthCertificate" EntitySet="BirthCertificate" />
+            <End Role="Child" EntitySet="Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Child_HealthCard" Association="Self.FK_Child_HealthCard">
+            <End Role="HealthCard" EntitySet="HealthCard" />
+            <End Role="Child" EntitySet="Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Child_Status" Association="Self.FK_Child_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Child" EntitySet="Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildGroup_Child" Association="Self.FK_ChildGroup_Child">
+            <End Role="Child" EntitySet="Child" />
+            <End Role="ChildGroup" EntitySet="ChildGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildGroup_Group" Association="Self.FK_ChildGroup_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="ChildGroup" EntitySet="ChildGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildParent_Child" Association="Self.FK_ChildParent_Child">
+            <End Role="Child" EntitySet="Child" />
+            <End Role="ChildParent" EntitySet="ChildParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildParent_Parent" Association="Self.FK_ChildParent_Parent">
+            <End Role="Parent" EntitySet="Parent" />
+            <End Role="ChildParent" EntitySet="ChildParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_GroupType" Association="Self.FK_Group_GroupType">
+            <End Role="GroupType" EntitySet="GroupType" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Room" Association="Self.FK_Group_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMentor_Group" Association="Self.FK_GroupMentor_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupMentor" EntitySet="GroupMentor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMentor_User" Association="Self.FK_GroupMentor_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="GroupMentor" EntitySet="GroupMentor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parent_Passport" Association="Self.FK_Parent_Passport">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Parent" EntitySet="Parent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Status" Association="Self.FK_User_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RosinkaDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RosinkaDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BirthCertificate" EntityType="RosinkaDbModel.BirthCertificate" />
+          <EntitySet Name="Child" EntityType="RosinkaDbModel.Child" />
+          <EntitySet Name="ChildGroup" EntityType="RosinkaDbModel.ChildGroup" />
+          <EntitySet Name="ChildParent" EntityType="RosinkaDbModel.ChildParent" />
+          <EntitySet Name="Group" EntityType="RosinkaDbModel.Group" />
+          <EntitySet Name="GroupMentor" EntityType="RosinkaDbModel.GroupMentor" />
+          <EntitySet Name="GroupType" EntityType="RosinkaDbModel.GroupType" />
+          <EntitySet Name="HealthCard" EntityType="RosinkaDbModel.HealthCard" />
+          <EntitySet Name="Parent" EntityType="RosinkaDbModel.Parent" />
+          <EntitySet Name="Passport" EntityType="RosinkaDbModel.Passport" />
+          <EntitySet Name="Role" EntityType="RosinkaDbModel.Role" />
+          <EntitySet Name="Room" EntityType="RosinkaDbModel.Room" />
+          <EntitySet Name="Status" EntityType="RosinkaDbModel.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="RosinkaDbModel.sysdiagrams" />
+          <EntitySet Name="User" EntityType="RosinkaDbModel.User" />
+          <AssociationSet Name="FK_Child_BirthCertificate1" Association="RosinkaDbModel.FK_Child_BirthCertificate1">
+            <End Role="BirthCertificate" EntitySet="BirthCertificate" />
+            <End Role="Child" EntitySet="Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Child_HealthCard" Association="RosinkaDbModel.FK_Child_HealthCard">
+            <End Role="HealthCard" EntitySet="HealthCard" />
+            <End Role="Child" EntitySet="Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Child_Status" Association="RosinkaDbModel.FK_Child_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Child" EntitySet="Child" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildGroup_Child" Association="RosinkaDbModel.FK_ChildGroup_Child">
+            <End Role="Child" EntitySet="Child" />
+            <End Role="ChildGroup" EntitySet="ChildGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildParent_Child" Association="RosinkaDbModel.FK_ChildParent_Child">
+            <End Role="Child" EntitySet="Child" />
+            <End Role="ChildParent" EntitySet="ChildParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildGroup_Group" Association="RosinkaDbModel.FK_ChildGroup_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="ChildGroup" EntitySet="ChildGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChildParent_Parent" Association="RosinkaDbModel.FK_ChildParent_Parent">
+            <End Role="Parent" EntitySet="Parent" />
+            <End Role="ChildParent" EntitySet="ChildParent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_GroupType" Association="RosinkaDbModel.FK_Group_GroupType">
+            <End Role="GroupType" EntitySet="GroupType" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Room" Association="RosinkaDbModel.FK_Group_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMentor_Group" Association="RosinkaDbModel.FK_GroupMentor_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="GroupMentor" EntitySet="GroupMentor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupMentor_User" Association="RosinkaDbModel.FK_GroupMentor_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="GroupMentor" EntitySet="GroupMentor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parent_Passport" Association="RosinkaDbModel.FK_Parent_Passport">
+            <End Role="Passport" EntitySet="Passport" />
+            <End Role="Parent" EntitySet="Parent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="RosinkaDbModel.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Status" Association="RosinkaDbModel.FK_User_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BirthCertificate">
+          <Key>
+            <PropertyRef Name="BirthCertificateId" />
+          </Key>
+          <Property Name="BirthCertificateId" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="BirthCertificateDate" Type="DateTime" Precision="0" />
+          <Property Name="IssuedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PlaceOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Child" Relationship="RosinkaDbModel.FK_Child_BirthCertificate1" FromRole="BirthCertificate" ToRole="Child" />
+        </EntityType>
+        <EntityType Name="Child">
+          <Key>
+            <PropertyRef Name="ChildId" />
+          </Key>
+          <Property Name="ChildId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthCertificateId" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="ChildPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="HealthCardId" Type="Int32" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfIssue" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="BirthCertificate" Relationship="RosinkaDbModel.FK_Child_BirthCertificate1" FromRole="Child" ToRole="BirthCertificate" />
+          <NavigationProperty Name="HealthCard" Relationship="RosinkaDbModel.FK_Child_HealthCard" FromRole="Child" ToRole="HealthCard" />
+          <NavigationProperty Name="Status1" Relationship="RosinkaDbModel.FK_Child_Status" FromRole="Child" ToRole="Status" />
+          <NavigationProperty Name="ChildGroup" Relationship="RosinkaDbModel.FK_ChildGroup_Child" FromRole="Child" ToRole="ChildGroup" />
+          <NavigationProperty Name="ChildParent" Relationship="RosinkaDbModel.FK_ChildParent_Child" FromRole="Child" ToRole="ChildParent" />
+        </EntityType>
+        <EntityType Name="ChildGroup">
+          <Key>
+            <PropertyRef Name="ChildGroupId" />
+          </Key>
+          <Property Name="ChildGroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildId" Type="Int32" />
+          <Property Name="GroupId" Type="Int32" />
+          <NavigationProperty Name="Child" Relationship="RosinkaDbModel.FK_ChildGroup_Child" FromRole="ChildGroup" ToRole="Child" />
+          <NavigationProperty Name="Group" Relationship="RosinkaDbModel.FK_ChildGroup_Group" FromRole="ChildGroup" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="ChildParent">
+          <Key>
+            <PropertyRef Name="ChildParentId" />
+          </Key>
+          <Property Name="ChildParentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChildId" Type="Int32" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="Child" Relationship="RosinkaDbModel.FK_ChildParent_Child" FromRole="ChildParent" ToRole="Child" />
+          <NavigationProperty Name="Parent" Relationship="RosinkaDbModel.FK_ChildParent_Parent" FromRole="ChildParent" ToRole="Parent" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GoupID" />
+          </Key>
+          <Property Name="GoupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GroupStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfRoom" Type="Int32" />
+          <Property Name="GroupTypeId" Type="Int32" />
+          <NavigationProperty Name="ChildGroup" Relationship="RosinkaDbModel.FK_ChildGroup_Group" FromRole="Group" ToRole="ChildGroup" />
+          <NavigationProperty Name="GroupType" Relationship="RosinkaDbModel.FK_Group_GroupType" FromRole="Group" ToRole="GroupType" />
+          <NavigationProperty Name="Room" Relationship="RosinkaDbModel.FK_Group_Room" FromRole="Group" ToRole="Room" />
+          <NavigationProperty Name="GroupMentor" Relationship="RosinkaDbModel.FK_GroupMentor_Group" FromRole="Group" ToRole="GroupMentor" />
+        </EntityType>
+        <EntityType Name="GroupMentor">
+          <Key>
+            <PropertyRef Name="GroupMentorId" />
+          </Key>
+          <Property Name="GroupMentorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="MentorId" Type="Int32" />
+          <NavigationProperty Name="Group" Relationship="RosinkaDbModel.FK_GroupMentor_Group" FromRole="GroupMentor" ToRole="Group" />
+          <NavigationProperty Name="User" Relationship="RosinkaDbModel.FK_GroupMentor_User" FromRole="GroupMentor" ToRole="User" />
+        </EntityType>
+        <EntityType Name="GroupType">
+          <Key>
+            <PropertyRef Name="GroupTypeId" />
+          </Key>
+          <Property Name="GroupTypeId" Type="Int32" Nullable="false" />
+          <Property Name="GroupTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Group" Relationship="RosinkaDbModel.FK_Group_GroupType" FromRole="GroupType" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="HealthCard">
+          <Key>
+            <PropertyRef Name="HealthCardId" />
+          </Key>
+          <Property Name="HealthCardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Disability" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HealthGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExtensiveTreatment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VaccinationCertificateFirstPage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Child" Relationship="RosinkaDbModel.FK_Child_HealthCard" FromRole="HealthCard" ToRole="Child" />
+        </EntityType>
+        <EntityType Name="Parent">
+          <Key>
+            <PropertyRef Name="ParentId" />
+          </Key>
+          <Property Name="ParentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassportId" Type="Int32" />
+          <NavigationProperty Name="ChildParent" Relationship="RosinkaDbModel.FK_ChildParent_Parent" FromRole="Parent" ToRole="ChildParent" />
+          <NavigationProperty Name="Passport" Relationship="RosinkaDbModel.FK_Parent_Passport" FromRole="Parent" ToRole="Passport" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="PassportId" />
+          </Key>
+          <Property Name="PassportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PassportSeries" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Citizenship" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ActualAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Parent" Relationship="RosinkaDbModel.FK_Parent_Passport" FromRole="Passport" ToRole="Parent" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="RosinkaDbModel.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomId" />
+          </Key>
+          <Property Name="RoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Group" Relationship="RosinkaDbModel.FK_Group_Room" FromRole="Room" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Child" Relationship="RosinkaDbModel.FK_Child_Status" FromRole="Status" ToRole="Child" />
+          <NavigationProperty Name="User" Relationship="RosinkaDbModel.FK_User_Status" FromRole="Status" ToRole="User" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfAcceptance" Type="DateTime" Precision="0" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GroupMentor" Relationship="RosinkaDbModel.FK_GroupMentor_User" FromRole="User" ToRole="GroupMentor" />
+          <NavigationProperty Name="Role" Relationship="RosinkaDbModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Status" Relationship="RosinkaDbModel.FK_User_Status" FromRole="User" ToRole="Status" />
+        </EntityType>
+        <Association Name="FK_Child_BirthCertificate1">
+          <End Type="RosinkaDbModel.BirthCertificate" Role="BirthCertificate" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.Child" Role="Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BirthCertificate">
+              <PropertyRef Name="BirthCertificateId" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="BirthCertificateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Child_HealthCard">
+          <End Type="RosinkaDbModel.HealthCard" Role="HealthCard" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.Child" Role="Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HealthCard">
+              <PropertyRef Name="HealthCardId" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="HealthCardId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Child_Status">
+          <End Type="RosinkaDbModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.Child" Role="Child" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Child">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildGroup_Child">
+          <End Type="RosinkaDbModel.Child" Role="Child" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.ChildGroup" Role="ChildGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="ChildId" />
+            </Principal>
+            <Dependent Role="ChildGroup">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildParent_Child">
+          <End Type="RosinkaDbModel.Child" Role="Child" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.ChildParent" Role="ChildParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Child">
+              <PropertyRef Name="ChildId" />
+            </Principal>
+            <Dependent Role="ChildParent">
+              <PropertyRef Name="ChildId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildGroup_Group">
+          <End Type="RosinkaDbModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.ChildGroup" Role="ChildGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GoupID" />
+            </Principal>
+            <Dependent Role="ChildGroup">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChildParent_Parent">
+          <End Type="RosinkaDbModel.Parent" Role="Parent" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.ChildParent" Role="ChildParent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parent">
+              <PropertyRef Name="ParentId" />
+            </Principal>
+            <Dependent Role="ChildParent">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_GroupType">
+          <End Type="RosinkaDbModel.GroupType" Role="GroupType" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupType">
+              <PropertyRef Name="GroupTypeId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="GroupTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Room">
+          <End Type="RosinkaDbModel.Room" Role="Room" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="NumberOfRoom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMentor_Group">
+          <End Type="RosinkaDbModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.GroupMentor" Role="GroupMentor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GoupID" />
+            </Principal>
+            <Dependent Role="GroupMentor">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupMentor_User">
+          <End Type="RosinkaDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.GroupMentor" Role="GroupMentor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="GroupMentor">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parent_Passport">
+          <End Type="RosinkaDbModel.Passport" Role="Passport" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.Parent" Role="Parent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Passport">
+              <PropertyRef Name="PassportId" />
+            </Principal>
+            <Dependent Role="Parent">
+              <PropertyRef Name="PassportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Type="RosinkaDbModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Status">
+          <End Type="RosinkaDbModel.Status" Role="Status" Multiplicity="0..1" />
+          <End Type="RosinkaDbModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RosinkaDbModelStoreContainer" CdmEntityContainer="RosinkaDbEntities">
+          <EntitySetMapping Name="BirthCertificate">
+            <EntityTypeMapping TypeName="RosinkaDbModel.BirthCertificate">
+              <MappingFragment StoreEntitySet="BirthCertificate">
+                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+                <ScalarProperty Name="IssuedBy" ColumnName="IssuedBy" />
+                <ScalarProperty Name="BirthCertificateDate" ColumnName="BirthCertificateDate" />
+                <ScalarProperty Name="BirthCertificateId" ColumnName="BirthCertificateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Child">
+            <EntityTypeMapping TypeName="RosinkaDbModel.Child">
+              <MappingFragment StoreEntitySet="Child">
+                <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="HealthCardId" ColumnName="HealthCardId" />
+                <ScalarProperty Name="ChildPhoto" ColumnName="ChildPhoto" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BirthCertificateId" ColumnName="BirthCertificateId" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChildGroup">
+            <EntityTypeMapping TypeName="RosinkaDbModel.ChildGroup">
+              <MappingFragment StoreEntitySet="ChildGroup">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+                <ScalarProperty Name="ChildGroupId" ColumnName="ChildGroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChildParent">
+            <EntityTypeMapping TypeName="RosinkaDbModel.ChildParent">
+              <MappingFragment StoreEntitySet="ChildParent">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ChildId" ColumnName="ChildId" />
+                <ScalarProperty Name="ChildParentId" ColumnName="ChildParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Group">
+            <EntityTypeMapping TypeName="RosinkaDbModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="GroupTypeId" ColumnName="GroupTypeId" />
+                <ScalarProperty Name="NumberOfRoom" ColumnName="NumberOfRoom" />
+                <ScalarProperty Name="GroupStatus" ColumnName="GroupStatus" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GoupID" ColumnName="GoupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupMentor">
+            <EntityTypeMapping TypeName="RosinkaDbModel.GroupMentor">
+              <MappingFragment StoreEntitySet="GroupMentor">
+                <ScalarProperty Name="MentorId" ColumnName="MentorId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupMentorId" ColumnName="GroupMentorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupType">
+            <EntityTypeMapping TypeName="RosinkaDbModel.GroupType">
+              <MappingFragment StoreEntitySet="GroupType">
+                <ScalarProperty Name="GroupTypeName" ColumnName="GroupTypeName" />
+                <ScalarProperty Name="GroupTypeId" ColumnName="GroupTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HealthCard">
+            <EntityTypeMapping TypeName="RosinkaDbModel.HealthCard">
+              <MappingFragment StoreEntitySet="HealthCard">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="VaccinationCertificateFirstPage" ColumnName="VaccinationCertificateFirstPage" />
+                <ScalarProperty Name="ExtensiveTreatment" ColumnName="ExtensiveTreatment" />
+                <ScalarProperty Name="HealthGroup" ColumnName="HealthGroup" />
+                <ScalarProperty Name="Disability" ColumnName="Disability" />
+                <ScalarProperty Name="HealthCardId" ColumnName="HealthCardId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parent">
+            <EntityTypeMapping TypeName="RosinkaDbModel.Parent">
+              <MappingFragment StoreEntitySet="Parent">
+                <ScalarProperty Name="PassportId" ColumnName="PassportId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passport">
+            <EntityTypeMapping TypeName="RosinkaDbModel.Passport">
+              <MappingFragment StoreEntitySet="Passport">
+                <ScalarProperty Name="ActualAddress" ColumnName="ActualAddress" />
+                <ScalarProperty Name="RegistrationAddress" ColumnName="RegistrationAddress" />
+                <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="PassportId" ColumnName="PassportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="RosinkaDbModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room">
+            <EntityTypeMapping TypeName="RosinkaDbModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="RosinkaDbModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RosinkaDbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="RosinkaDbModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="DateOfAcceptance" ColumnName="DateOfAcceptance" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,191 @@
+﻿<Page x:Class="RosinkaApp.Pages.GroupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RosinkaApp.Pages"
+      mc:Ignorable="d" 
+      MinHeight="300px"
+      MinWidth="400px"
+      d:DesignHeight="620" d:DesignWidth="800"
+      Title="GroupPage">
+    <ScrollViewer ScrollViewer.CanContentScroll="True"  Background="White">
+        <StackPanel>
+            <TextBlock Text="Список групп" VerticalAlignment="Center" TextAlignment="Center" FontSize="25px" Margin="0,5,0,20"></TextBlock>
+            <StackPanel Margin="0,5,0,20" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock VerticalAlignment="Center" FontSize="15px" Text="Включить закрытые группы"></TextBlock>
+                <CheckBox VerticalAlignment="Center" Checked="ViewBtn_Checked" Unchecked="ViewBtn_Unchecked" x:Name="ViewBtn"></CheckBox>
+            </StackPanel>
+            <StackPanel Margin="50,0,0,0" HorizontalAlignment="Left" Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60px"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="/Resources/nursery-group.png" HorizontalAlignment="Left" Grid.RowSpan="2" Height="50" Width="50"></Image>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" Grid.Column="1" Text="Ясельные группы" FontSize="20px" FontWeight="Bold" ></TextBlock>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Left" Grid.Column="1" Text="От 2-х до 3-х лет" FontSize="10px"></TextBlock>
+                </Grid>
+                <ListView x:Name="nurseryList" HorizontalAlignment="Left" Margin="0,0,0,10" MaxWidth="880px">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border MouseLeftButtonDown="GroupClick_MouseLeftButtonDown"  CornerRadius="4" BorderThickness="1" BorderBrush="Black" Height="50" Width="200">
+                                <Border.Background>
+                                    <ImageBrush  Stretch="Uniform" ImageSource="{Binding AddBackImage}"/>
+                                </Border.Background>
+                                <StackPanel>
+                                    <TextBlock Visibility="{Binding VisualCheck}" x:Name="nurseryClick"  Text="{Binding GroupName}" TextAlignment="Center" TextWrapping="Wrap" Foreground="Black" Padding="0,7,0,2" FontSize="12px"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            <StackPanel Margin="50,0,0,0" HorizontalAlignment="Left" Orientation="Vertical">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60px"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="/Resources/junior-group.png" HorizontalAlignment="Left" Grid.RowSpan="2" Height="50" Width="50"></Image>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" Grid.Column="1" Text="Младшие группы" FontSize="20px" FontWeight="Bold" ></TextBlock>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Left" Grid.Column="1" Text="От 3-х до 4-х лет" FontSize="10px"></TextBlock>
+                </Grid>
+                <ListView x:Name="juniorList" HorizontalAlignment="Left" Margin="0,0,0,10" MaxWidth="880px">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border MouseLeftButtonDown="GroupClick_MouseLeftButtonDown"  CornerRadius="4" BorderThickness="1" BorderBrush="Black" Height="50" Width="200">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="{Binding AddBackImage}"/>
+                                </Border.Background>
+                                <StackPanel>
+                                    <TextBlock Visibility="{Binding VisualCheck}" x:Name="nurseryClick"  Text="{Binding GroupName}" TextAlignment="Center" TextWrapping="Wrap" Foreground="Black" Padding="0,7,0,2" FontSize="12px"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            <StackPanel Margin="50,0,0,0" HorizontalAlignment="Left" Orientation="Vertical">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60px"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="/Resources/middle-group.png" HorizontalAlignment="Left" Grid.RowSpan="2" Height="50" Width="50"></Image>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" Grid.Column="1" Text="Средние группы" FontSize="20px" FontWeight="Bold" ></TextBlock>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Left" Grid.Column="1" Text="От 4-х до 5-и лет" FontSize="10px"></TextBlock>
+                </Grid>
+                <ListView x:Name="middleList" HorizontalAlignment="Left" Margin="0,0,0,10" MaxWidth="880px">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border MouseLeftButtonDown="GroupClick_MouseLeftButtonDown"  CornerRadius="4" BorderThickness="1" BorderBrush="Black" Height="50" Width="200">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="{Binding AddBackImage}"/>
+                                </Border.Background>
+                                <StackPanel>
+                                    <TextBlock Visibility="{Binding VisualCheck}" x:Name="nurseryClick"  Text="{Binding GroupName}" TextAlignment="Center" TextWrapping="Wrap" Foreground="Black" Padding="0,7,0,2" FontSize="12px"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            <StackPanel Margin="50,0,0,0" HorizontalAlignment="Left" Orientation="Vertical">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60px"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Source="/Resources/hight-group.png"  HorizontalAlignment="Left" Grid.RowSpan="2" Height="50" Width="50"></Image>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" Grid.Column="1" Text="Старшые группы" FontSize="20px" FontWeight="Bold" ></TextBlock>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Left" Grid.Column="1" Text="От 5-и до 6-и лет" FontSize="10px"></TextBlock>
+                </Grid>
+                <ListView x:Name="hightList" HorizontalAlignment="Left" Margin="0,0,0,10" MaxWidth="880px">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border MouseLeftButtonDown="GroupClick_MouseLeftButtonDown"  CornerRadius="4" BorderThickness="1" BorderBrush="Black" Height="50" Width="200">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="{Binding AddBackImage}"/>
+                                </Border.Background>
+                                <StackPanel>
+                                    <TextBlock Visibility="{Binding VisualCheck}" x:Name="nurseryClick"  Text="{Binding GroupName}" TextAlignment="Center" TextWrapping="Wrap" Foreground="Black" Padding="0,7,0,2" FontSize="12px"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            <StackPanel Margin="50,0,0,0" HorizontalAlignment="Left" Orientation="Vertical">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60px"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/> 
+                    </Grid.RowDefinitions>
+                    <Image Source="/Resources/school-group.png" HorizontalAlignment="Left" Grid.RowSpan="2" Height="50" Width="50"></Image>
+                    <TextBlock Grid.Row="0" HorizontalAlignment="Left" Grid.Column="1" Text="Подготовительные группы" FontSize="20px" FontWeight="Bold" ></TextBlock>
+                    <TextBlock Grid.Row="1" HorizontalAlignment="Left" Grid.Column="1" Text="От 6-и до 7-и лет" FontSize="10px"></TextBlock>
+                </Grid>
+                <ListView x:Name="schoolList" HorizontalAlignment="Left" Margin="0,0,0,10" MaxWidth="880px">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border MouseLeftButtonDown="GroupClick_MouseLeftButtonDown"  CornerRadius="4" BorderThickness="1" BorderBrush="Black" Height="50" Width="200">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Uniform" ImageSource="{Binding AddBackImage}"/>
+                                </Border.Background>
+                                <StackPanel>
+                                    <TextBlock Visibility="{Binding VisualCheck}" x:Name="nurseryClick"  Text="{Binding GroupName}" TextAlignment="Center" TextWrapping="Wrap" Foreground="Black" Padding="0,7,0,2" FontSize="12px"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

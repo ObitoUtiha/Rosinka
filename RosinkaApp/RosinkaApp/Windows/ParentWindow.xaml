@@ -1,0 +1,43 @@
+﻿<Window x:Class="RosinkaApp.Windows.ParentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RosinkaApp.Windows"
+        mc:Ignorable="d"
+        Title="Родители" Height="450" Width="800" >
+    <ScrollViewer ScrollViewer.CanContentScroll="True"  Background="White">
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Margin="5" FontSize="20" Text="Список родителей"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="20">
+                <TextBox x:Name="searchTb" TextChanged="searchTb_TextChanged" Margin="10" MinWidth="150"/>
+                <ComboBox x:Name="nameCmb" SelectionChanged="nameCmb_SelectionChanged"  Margin="10" MinWidth="150">
+                    <ComboBoxItem Content="А-Я"/>
+                    <ComboBoxItem Content="Я-А"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <ListView x:Name="parentList" BorderThickness="0" Margin="20,30,30,20">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid>
+                            </UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border x:Name="ParentBtn" MouseLeftButtonDown="ParentBtn_MouseLeftButtonDown" HorizontalAlignment="Center" MinWidth="250" VerticalAlignment="Center" BorderBrush="Black" BorderThickness="0.5" CornerRadius="5">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding ParentFullName}" HorizontalAlignment="Center"/>
+                                    <TextBlock HorizontalAlignment="Center" Text="{Binding Passport.Birthday,  StringFormat={}{0:d MMMM yyyy}, ConverterCulture=ru}"/>
+                                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="Дети:"></TextBlock>
+                                    <TextBlock HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" MaxWidth="200px" Text="{Binding ParentChilds}" ></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

@@ -1,0 +1,91 @@
+﻿<Window x:Class="RosinkaApp.Windows.ChildAddEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RosinkaApp.Windows"
+        mc:Ignorable="d"
+        Title="Ребёнок"  MinHeight="600" MinWidth="1200"  Height="500" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Image Margin="60,40,60,100" Grid.Column="0"  x:Name="ChildPhoto">
+            <Image.Source>
+                <Binding Path="">
+                </Binding>
+            </Image.Source>
+        </Image>
+        <StackPanel VerticalAlignment="Bottom" Margin="0,0,0,10" x:Name="adminPanel">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="downloadPhotoBtn" Click="downloadPhotoBtn_Click" Content="Загрузить фото" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Button  x:Name="delPhotoBtn" Click="delPhotoBtn_Click" Content="Удалить фото" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Button x:Name="confirmBtn" Click="confirmBtn_Click" Content="Сохранить информацию" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Label HorizontalAlignment="Center" Content="Информация о ребёнке"/>
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="ФИО:"></TextBlock>
+                <TextBox Padding="1" Margin="8,0,0,0" x:Name="ChildFullName"/>
+            </StackPanel>
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock  VerticalAlignment="Center" Text="Дата рождения:"></TextBlock>
+                <DatePicker Padding="1" Margin="8,0,0,0" x:Name="Birthday"/>
+            </StackPanel>
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Группа здоровья:"/>
+                <TextBox Padding="1" Margin="8,0,0,0" x:Name="HealthGroup"/>
+            </StackPanel>
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="Родители:"></TextBlock>
+                <DataGrid AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" x:Name="parentList" VerticalAlignment="Center" BorderThickness="0" Margin="18,0,10,0" >
+                    <DataGrid.CellStyle>
+                        <Style>
+                        </Style>
+                    </DataGrid.CellStyle>
+
+                    <DataGrid.Columns >
+                        <DataGridTextColumn x:Name="parentFullName"  Binding="{Binding ParentFullName}"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="DelParentBtn" Height="20" Width="20" Click="DelParentBtn_Click"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="ParentViewBtn" Content="Просмотреть" FontSize="8" Height="20" Width="100" Click="ParentViewBtn_Click"></Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                <Button x:Name="AddBtn" Click="AddBtn_Click" Content="Добавить"/>
+            </StackPanel>
+            <Border Margin="10" Opacity="0.6" BorderThickness="1" BorderBrush="Black" CornerRadius="2"></Border>
+            <Label HorizontalAlignment="Center" Content="Информация о группе"></Label>
+            <StackPanel Margin="10" Orientation="Horizontal">
+                <TextBlock Text="Группа:"/>
+                <ComboBox DataContextChanged="GroupName_DataContextChanged_1" IsEnabled="False" Padding="1" Margin="8,0,0,0" x:Name="GroupName" DisplayMemberPath="Group.GroupName" materialDesign:HintAssist.Hint="№ группы"/>
+            </StackPanel>
+            <StackPanel Margin="10" Orientation="Horizontal" IsEnabled="False">
+                <TextBlock Text="Комната группы:"/>
+                <TextBox Padding="1" Margin="8,0,0,0" x:Name="RoomName" />
+            </StackPanel>
+            <Border Margin="10" Opacity="0.6" BorderThickness="1" BorderBrush="Black" CornerRadius="2"></Border>
+            <StackPanel Margin="0,20,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
+                <StackPanel Orientation="Horizontal">
+                    <Button  x:Name="birthCertificateBtn" Margin="0,0,10,15" Click="birthCertificateBtn_Click" Content="Мед. книжка 🔎"></Button>
+                    <Button x:Name="healthCardBtn" Click="healthCardBtn_Click" Margin="0,0,0,15" Content="Свидетельство о рождении 🔎"></Button>
+                </StackPanel>
+                <Button x:Name="BtnReport" Click="BtnReport_Click" Margin="50,0,50,0" Content="Создать отчёт"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

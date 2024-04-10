@@ -1,0 +1,82 @@
+﻿<Window x:Class="RosinkaApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RosinkaApp"
+        mc:Ignorable="d"
+        MinHeight="300px"
+        MinWidth="400px"
+        Title="Росинка" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Border" x:Key="borderAnimation">
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="Width">
+                                <DoubleAnimation BeginTime="0" Duration="0:0:0.5" From="52" To="252"/>
+
+
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard Storyboard.TargetProperty="Width">
+                                <DoubleAnimation BeginTime="0" Duration="0:0:0.5" From="252" To="52"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.15*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Button Content="Выход" Padding="1" x:Name="menuBtn" Click="menuBtn_Click" Margin="10,2"/>
+        <StackPanel Panel.ZIndex="4"  Grid.ColumnSpan="2" Grid.Row="1" Orientation="Vertical" Margin="10,20,0,0">
+            <StackPanel Margin="0,20,0,0">
+                <Border x:Name="groupBtn" MouseLeftButtonDown="groupBtn_MouseLeftButtonDown" BorderBrush="Black" BorderThickness="0.5" CornerRadius="10" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" MouseEnter="groupBtn_MouseEnter" MouseLeave="groupBtn_MouseLeave" Width="52" Height="50" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="5,1,5,1" Width="40" Height="50" Source="Resources/group.png"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Text="Список групп"></TextBlock>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0">
+                <Border x:Name="parentBtn" MouseLeftButtonDown="parentBtn_MouseLeftButtonDown" BorderBrush="Black" BorderThickness="0.5" CornerRadius="10"  HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" MouseEnter="parentBtn_MouseEnter" MouseLeave="parentBtn_MouseLeave" Width="52" Height="50" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="5,1,5,1" Width="40" Height="50" Source="Resources/parent.png"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Text="Список всех родителей"></TextBlock>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0">
+                <Border x:Name="childBtn" MouseLeftButtonDown="childBtn_MouseLeftButtonDown" BorderBrush="Black" BorderThickness="0.5" CornerRadius="10"   HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" MouseEnter="childBtn_MouseEnter" MouseLeave="childBtn_MouseLeave" Width="52" Height="50" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="5,1,5,1" Width="40" Height="50" Source="Resources/kids.png"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Text="Список всех детей"></TextBlock>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="0,20,0,0">
+                <Border Background="White" MouseLeftButtonDown="mainBtn_MouseLeftButtonDown" x:Name="mainBtn" BorderBrush="Black" BorderThickness="0.5" CornerRadius="10"  HorizontalAlignment="Left" VerticalAlignment="Center"  MouseEnter="mainBtn_MouseEnter" MouseLeave="mainBtn_MouseLeave" Width="52" Height="50" >
+                    <StackPanel Orientation="Horizontal">
+                        <Image Margin="5,1,5,1" Width="40" Height="50" Source="Resources/mentors.png"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Text="Список воспитателей"></TextBlock>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+        <Frame ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1"></Frame>
+    </Grid>
+</Window>

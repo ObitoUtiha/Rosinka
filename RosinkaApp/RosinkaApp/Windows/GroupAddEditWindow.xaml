@@ -1,0 +1,104 @@
+﻿<Window x:Class="RosinkaApp.Windows.GroupAddEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RosinkaApp.Windows"
+        mc:Ignorable="d"
+        Title="Группа" Height="500" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,0,0,0">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <ComboBox Padding="1" x:Name="groupType" DisplayMemberPath="GroupTypeName" Margin="0,0,5,0" ></ComboBox>
+                <TextBox Padding="1" x:Name="groupName" ></TextBox>
+            </StackPanel>
+            <TextBlock FontSize="20" Text="Воспитатели группы"></TextBlock>
+
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" x:Name="mentorList" >
+                <DataGrid.CellStyle>
+                    <Style>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.RowStyle>
+                    <Style>
+
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns >
+                    <DataGridTextColumn x:Name="MentorFullNameBtn" Header="Воспитатель" Binding="{Binding MentorFullName}"/>
+                    <DataGridTextColumn x:Name="MentorRole" Header="Должность" Binding="{Binding Role.RoleName}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="DelMentordBtn" Height="20" Width="20" Click="DelMentordBtn_Click"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="MentorViewBtn" Content="Просмотреть" FontSize="8" Height="20" Width="100" Click="MentorViewBtn_Click"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        
+            <Button Content="Добавить" Margin="0,20,0,0" x:Name="AddMentor" Click="AddMentor_Click" HorizontalAlignment="Left" Width="120"></Button>
+        </StackPanel>
+        <Border Margin="10" VerticalAlignment="Bottom" Opacity="0.6" BorderThickness="1" Height="2" BorderBrush="Black" CornerRadius="1"></Border>
+        <StackPanel Margin="10,0,0,0" Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="0,0,200,10" Orientation="Horizontal">
+                    <TextBlock Text="Комната: "/>
+                    <ComboBox x:Name="RoomCmb" Padding="1" DisplayMemberPath="RoomName"></ComboBox>
+                </StackPanel>
+                <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                    <TextBlock Text="Статус группы: "/>
+                    <TextBox x:Name="StatusTb" Padding="1"/>
+                </StackPanel>
+            </StackPanel>
+            <TextBlock FontSize="20" Text="Дети в группе"></TextBlock>
+            <DataGrid AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" x:Name="childList" >
+                <DataGrid.CellStyle>
+                    <Style>
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.RowStyle>
+                    <Style>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns >
+                    <DataGridTextColumn x:Name="ChildFullNameBtn" Header="Ребёнок" Binding="{Binding ChildFullName}"/>
+                    <DataGridTextColumn x:Name="ChildDateTb" Header="Дата рождения" Binding="{Binding Birthday, StringFormat={}{0:d MMMM yyyy}, ConverterCulture=ru}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="DelChildBtn" Height="20" Width="20" Click="DelChildBtn_Click"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="ChildViewBtn" Content="Просмотреть" FontSize="8" Height="20" Width="100" Click="ChildViewBtn_Click"></Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Добавить" Margin="0,20,0,0" x:Name="AddChild" Click="AddChild_Click" HorizontalAlignment="Left" Width="120"></Button>
+            <Button
+              Margin="200,10,200,10"
+              x:Name="BtnSave" Click="BtnSave_Click"
+              Content="Сохранить 💾"
+              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+              Style="{StaticResource MaterialDesignPaperDarkButton}"
+              VerticalAlignment="Bottom" />
+        </StackPanel>
+    </Grid>
+</Window>
